@@ -1,32 +1,38 @@
 package paginas;
 
+import java.time.Duration;
+import java.util.NoSuchElementException;
+
+
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ListaDeProdutosPage {
+public class ListaDeProdutosPage extends BasePage {
     private WebDriver driver;
+    private WebDriverWait wait;
 
     public ListaDeProdutosPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public ListaDeProdutosPage verificarExibicaoCabecalhoComLogo(){
-        WebElement logo = driver.findElement(By.id("logo-container"));
-        String texto = logo.getText();
-        Assertions.assertEquals("Lojinha", texto); 
-
-        return this;
+    public String verificarExibicaoCabecalhoComLogo(){
+        return driver.findElement(By.id("logo-container")).getText();
     }
 
-    public ListaDeProdutosPage verificarExibicaoCabecalhoComSaudacaoESair(){
-        WebElement elemento = driver.findElement(By.cssSelector("ul li a"));
-        String texto = elemento.getText();
+    public String verificarExibicaoCabecalhoComSaudacaoESair(){
+        return driver.findElement(By.cssSelector("ul li a")).getText();
+        
+    }
 
-        Assertions.assertEquals("Boas vindas, admin!", texto);
-
-        return this;
+    public String capturaTituloDaListaDeProdutos(){
+       return driver.findElement(By.cssSelector("div h3")).getText();
     }
 
     public FormularioAdicaoDeProdutosPage acessaFormularioAdicaoNovoProduto(){
@@ -39,4 +45,6 @@ public class ListaDeProdutosPage {
 
         return this;
     }
+
+    
 }

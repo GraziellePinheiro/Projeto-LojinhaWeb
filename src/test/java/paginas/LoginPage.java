@@ -1,18 +1,26 @@
 package paginas;
 
+import java.time.Duration;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
+public class LoginPage extends BasePage{
     private WebDriver driver;
+    private WebDriverWait wait;
+    
     
 
     public LoginPage(WebDriver driver){
+        super(driver);
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public WebDriver abrirNavegador(){
@@ -22,12 +30,6 @@ public class LoginPage {
         return driver;
     }
 
-    // public WebElement campoUsuario(){
-    //     return driver.findElement(By.cssSelector("label[for='usuario']"));
-    // }
-    // public WebElement campoSenha(){
-    //     return driver.findElement(By.cssSelector("label[for='senha']"));
-    // }
     public LoginPage informarUsuario(String usuario){
         driver.findElement(By.cssSelector("label[for='usuario']")).click();
         driver.findElement(By.id("usuario")).sendKeys(usuario);
@@ -37,19 +39,6 @@ public class LoginPage {
     public LoginPage informarSenha(String senha){
         driver.findElement(By.cssSelector("label[for='senha']")).click();
         driver.findElement(By.id("senha")).sendKeys(senha);
-
-        return this;
-    }
-
-    @DisplayName("Valida o placeholder(texto) do elemento usuario e senha")
-    public LoginPage ValidaPlaceholderUsuarioESenha(){
-        WebElement placeUsuario = driver.findElement(By.cssSelector("label[for='usuario']"));
-        String textoPlaceUsuario = placeUsuario.getText();
-        Assertions.assertEquals("Usuário", textoPlaceUsuario);
-
-        WebElement placeSenha = driver.findElement(By.cssSelector("label[for='senha']"));
-        String textoPlaceSenha = placeSenha.getText();
-        Assertions.assertEquals("Senha", textoPlaceSenha);
 
         return this;
     }
@@ -65,11 +54,4 @@ public class LoginPage {
 
         return this;
     }
-
-    public String capturarMsgApresentada(){
-        return driver.findElement(By.cssSelector(".toast.rounded")).getText();
-    }
-
-
-    
 }
