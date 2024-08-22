@@ -27,8 +27,9 @@ jobs:
         if (Test-Path "C:\drivers\chocolatey\bin\chromedriver.exe") {
           Remove-Item "C:\drivers\chocolatey\bin\chromedriver.exe"
         }
-        # Download and install ChromeDriver
-        Invoke-WebRequest -Uri https://chromedriver.storage.googleapis.com/127.0.6533.99/chromedriver_win32.zip -OutFile chromedriver_win32.zip
+        # Download and install the latest ChromeDriver
+        $chromeDriverVersion = Invoke-RestMethod https://chromedriver.storage.googleapis.com/LATEST_RELEASE
+        Invoke-WebRequest -Uri "https://chromedriver.storage.googleapis.com/$chromeDriverVersion/chromedriver_win32.zip" -OutFile chromedriver_win32.zip
         Expand-Archive -Path chromedriver_win32.zip -DestinationPath C:\drivers\chocolatey\bin
         [System.IO.File]::Move('C:\drivers\chocolatey\bin\chromedriver.exe', 'C:\drivers\chocolatey\bin\chromedriver.exe')
 
