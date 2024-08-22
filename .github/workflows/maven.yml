@@ -35,6 +35,21 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
 
+    - name: Install Google Chrome
+      run: |
+        sudo apt update
+        sudo apt install -y wget unzip
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo apt install -y ./google-chrome-stable_current_amd64.deb
+
+    - name: Install ChromeDriver
+      run: |
+        CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
+        wget https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+        unzip chromedriver_linux64.zip
+        sudo mv chromedriver /usr/local/bin/chromedriver
+        sudo chmod +x /usr/local/bin/chromedriver
+
     - name: Build and test with Maven
       run: mvn clean install
 
@@ -47,3 +62,4 @@ jobs:
       with:
         name: surefire-reports
         path: target/surefire-reports/*
+
