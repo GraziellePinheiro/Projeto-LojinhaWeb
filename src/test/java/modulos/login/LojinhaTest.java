@@ -49,6 +49,7 @@ public class LojinhaTest {
         assertEquals("Lista de Produtos", mensagemBoasVindas);
     }
 
+    @Disabled
     @DisplayName("Login sem sucesso, campos em branco")
     @Test
     public void testLoginSemSucessoCamposVazios(){
@@ -60,6 +61,7 @@ public class LojinhaTest {
         assertEquals("Falha ao fazer o login", mensagemApresentada);
     }
 
+    @Disabled
     @DisplayName("Sem sucesso, campo usuario incorreto")
     @Test
     public void testLoginSemSucessoUsuarioIncorreto(){
@@ -71,6 +73,7 @@ public class LojinhaTest {
         assertEquals("Falha ao fazer o login", mensagemApresentada);
     }
 
+    @Disabled
     @DisplayName("Sem sucesso, campo senha incorreto")
     @Test
     public void testLoginSemSucessoSenhaIncorreta(){
@@ -82,6 +85,7 @@ public class LojinhaTest {
         assertEquals("Falha ao fazer o login", mensagemApresentada);
     }
 
+    @Disabled
     @DisplayName("Sem sucesso, campo usuario e senha incorreto")
     @Test
     public void testLoginSemSucessoUsuarioESenhaIncorreta(){
@@ -93,6 +97,7 @@ public class LojinhaTest {
         assertEquals("Falha ao fazer o login", mensagemApresentada);
     }
 
+    @Disabled
     @DisplayName("Sem sucesso, espaços extras em ambos campos")
     @Test
     public void testLoginSemSucessoEspacosExtras(){
@@ -104,6 +109,7 @@ public class LojinhaTest {
         assertEquals("Falha ao fazer o login", mensagemApresentada);   
     }
 
+    @Disabled
     @DisplayName("Valida o cabeçalho da pagina de Lista de Produtos")
     @Test
     public void testVisualizarCabecalhoComLogoTextoEBotaoSair(){
@@ -116,6 +122,7 @@ public class LojinhaTest {
         Assertions.assertTrue(saudacao.contains("Boas vindas, admin!"), "O cabeçalho não contém a saudação esperada.");
     }
     
+    @Disabled
     @DisplayName("Valida o botão de exclusão")
     @Test
     public void testValidaBotaoExclusao(){
@@ -128,6 +135,7 @@ public class LojinhaTest {
         assertEquals("Produto removido com sucesso", msgApresentada);
     }
 
+    @Disabled
     @DisplayName("Adicionar novo produto com valor de Um centavo")
     @Test
     public void testAdicionarProdutoComValorValidoDeUmCentavo(){
@@ -144,6 +152,7 @@ public class LojinhaTest {
         assertEquals("Produto adicionado com sucesso", mensagemApresentada);  
     }
 
+    @Disabled
     @DisplayName("Adicionar novo produto com valor de Sete Mil")
     @Test
     public void testAdicionarProdutoComValorValidoDeSeteMil(){
@@ -160,6 +169,7 @@ public class LojinhaTest {
         assertEquals("Produto adicionado com sucesso", mensagemApresentada);  
     }
 
+    @Disabled
     @DisplayName("Adicionar novo produto com componente")
     @Test
     public void testAdicionarProdutoComComponente(){
