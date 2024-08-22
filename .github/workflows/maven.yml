@@ -11,9 +11,6 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    env:
-      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
-
     steps:
     - name: Check out code
       uses: actions/checkout@v3
@@ -34,6 +31,9 @@ jobs:
         Invoke-WebRequest -Uri https://chromedriver.storage.googleapis.com/127.0.6533.99/chromedriver_win32.zip -OutFile chromedriver_win32.zip
         Expand-Archive -Path chromedriver_win32.zip -DestinationPath C:\drivers\chocolatey\bin
         [System.IO.File]::Move('C:\drivers\chocolatey\bin\chromedriver.exe', 'C:\drivers\chocolatey\bin\chromedriver.exe')
+
+    - name: Set environment variable for Node 20
+      run: echo "FORCE_JAVASCRIPT_ACTIONS_TO_NODE20=true" >> $GITHUB_ENV
 
     - name: Run tests
       run: |
