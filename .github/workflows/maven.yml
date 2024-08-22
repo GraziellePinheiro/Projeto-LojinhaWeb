@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: windows-latest
     env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
+      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
 
     steps:
     - name: Check out code
