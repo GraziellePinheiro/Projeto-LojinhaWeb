@@ -33,8 +33,10 @@ jobs:
         Expand-Archive -Path chromedriver_win32.zip -DestinationPath C:\drivers\chocolatey\bin
         [System.IO.File]::Move('C:\drivers\chocolatey\bin\chromedriver.exe', 'C:\drivers\chocolatey\bin\chromedriver.exe')
 
-    - name: Set environment variable for Node 20
-      run: echo "FORCE_JAVASCRIPT_ACTIONS_TO_NODE20=true" >> $GITHUB_ENV
+    - name: Set up Node.js 20
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
 
     - name: Run tests
       run: |
