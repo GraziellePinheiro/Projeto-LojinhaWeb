@@ -62,4 +62,3 @@ jobs:
       with:
         name: surefire-reports
         path: target/surefire-reports/*
-
