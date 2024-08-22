@@ -34,12 +34,21 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
 
-    - name: Install Google Chrome
+    - name: Install ChromeDriver
       run: |
-        Invoke-WebRequest -Uri https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -OutFile google-chrome-stable_current_amd64.deb
+        
         Invoke-WebRequest -Uri https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_win32.zip -OutFile chromedriver_win32.zip
-        Expand-Archive -Path chromedriver_win32.zip -DestinationPath C:\drivers
-        [System.IO.File]::Move('chromedriver.exe', 'C:\drivers\chromedriver.exe')
+        
+        
+        if (-not (Test-Path -Path C:\drivers\chocolatey\bin)) {
+          New-Item -Path C:\drivers\chocolatey\bin -ItemType Directory -Force
+        }
+        
+        
+        Expand-Archive -Path chromedriver_win32.zip -DestinationPath C:\drivers\chocolatey\bin -Force
+        
+       
+        Move-Item -Path 'C:\drivers\chocolatey\bin\chromedriver.exe' -Destination 'C:\drivers\chocolatey\bin\chromedriver.exe' -Force
 
     - name: Build and test with Maven
       run: mvn clean install
@@ -52,4 +61,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: surefire-reports
-        path: target\surefire-reports\*
+        path: target/surefire-reports/*
