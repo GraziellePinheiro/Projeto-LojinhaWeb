@@ -34,22 +34,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
 
-    - name: Install ChromeDriver
-      run: |
-        # Baixar a versão mais recente do ChromeDriver
-        Invoke-WebRequest -Uri https://chromedriver.storage.googleapis.com/127.0.6533.90/chromedriver_win32.zip -OutFile chromedriver_win32.zip
-        
-        # Criar o diretório para o ChromeDriver se não existir
-        if (-not (Test-Path -Path C:\drivers\chocolatey\bin)) {
-          New-Item -Path C:\drivers\chocolatey\bin -ItemType Directory -Force
-        }
-        
-        # Extrair o ChromeDriver
-        Expand-Archive -Path chromedriver_win32.zip -DestinationPath C:\drivers\chocolatey\bin -Force
-        
-        # Mover o executável para o diretório desejado
-        Move-Item -Path 'C:\drivers\chocolatey\bin\chromedriver.exe' -Destination 'C:\drivers\chocolatey\bin\chromedriver.exe' -Force
-
     - name: Build and test with Maven
       run: mvn clean install
 
