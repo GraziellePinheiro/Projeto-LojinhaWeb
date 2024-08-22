@@ -1,2 +1,9 @@
+.gitkeep
+paginas\ListaDeProdutosPage.class
+paginas\FormularioEdicaoDeProdutosPage.class
+modulos\login\LojinhaTest.class
+paginas\FormularioAdicaoDeProdutosPage.class
+paginas\BasePage.class
 com\example\AppTest.class
-modulos\login\LoginTest.class
+paginas\FormularioAdicaoDeComponentePage.class
+paginas\LoginPage.class
